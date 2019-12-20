@@ -30,8 +30,13 @@ class App extends React.Component {
     console.log('this.state', this.state);
     console.log('this.props.id', this.props.id);
     const newCards = omit(this.state.allCards, cardKey);
-    console.log('newCards', this.state);
+    //CONFUSING!!! Had to map through the lists array and remove the cardIds if they matched the cardKey variable 
+    const newLists = this.state.lists.map(list => {
+      return list.cardIds.filter(id => id !== cardKey)
+    });      
+    console.log('newCards', newCards);
     this.setState({
+      lists: newLists,
       allCards: newCards
     })
     console.log('this.state after delete', this.state);
