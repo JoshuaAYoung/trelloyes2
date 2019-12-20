@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<section
+  className="List"
+>
+  <header
+    className="List-head"
+  >
+    <h2>
+      testHeader
+    </h2>
+  </header>
+  <div
+    className="List-Cards"
+  >
+    <button
+      className="List-add-button"
+      type="button"
+    >
+      + Add Random Card
+    </button>
+  </div>
+</section>
+`;
+
+exports[`List component renders the list as expected 1`] = `
+<section
+  className="List"
+>
+  <header
+    className="List-head"
+  >
+    <h2>
+      testHeader
+    </h2>
+  </header>
+  <div
+    className="List-Cards"
+  >
+    <button
+      className="List-add-button"
+      type="button"
+    >
+      + Add Random Card
+    </button>
+  </div>
+</section>
+`;
