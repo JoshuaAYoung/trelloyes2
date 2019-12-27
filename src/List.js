@@ -23,7 +23,7 @@ class List extends React.Component {
           <button
             type='button'
             className='List-add-button'
-            onClick={() => this.props.randomCard()}
+            onClick={() => this.props.randomCard(this.props.listId)}
           >
             + Add Random Card
           </button>

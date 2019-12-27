@@ -27,30 +27,40 @@ class App extends React.Component {
     }
 
   deleteCard = (cardKey) => {   
-    console.log('this.state', this.state);
-    console.log('this.props.id', this.props.id);
     const newCards = omit(this.state.allCards, cardKey);
-    //CONFUSING!!! Had to map through the lists array and remove the cardIds if they matched the cardKey variable 
     const newLists = this.state.lists.map(list => {
       return list.cardIds.filter(id => id !== cardKey)
     });      
-    console.log('newCards', newCards);
     this.setState({
       lists: newLists,
       allCards: newCards
     })
-    console.log('this.state after delete', this.state);
-
+    console.log(this.state)
   }
     
-  randomCard = () => {
-    const newCardObj = newRandomCard();
-    const allCards = this.state.allCards
-    this.setState({
-      allCards: allCards[newCardObj.id]=newCardObj
+  randomCard = (listId) => {
+    const newCard = newRandomCard()
+
+    const newLists = this.state.store.lists.map(list => {
+      if (list.id === listId) {
+	return {
+          ...list,
+          cardIds: [...list.cardIds, newCard.id]
+        };
+      }
+      return list;
     })
-    console.log(this.state);
-  }
+
+    this.setState({
+      store: {
+        lists: newLists,
+        allCards: {
+          ...this.state.store.allCards,
+          [newCard.id]: newCard
+        }
+      }
+    })
+  };
 
   render() {
     return (
@@ -67,6 +77,7 @@ class App extends React.Component {
               key={list.id}
               deleteCard={this.deleteCard}
               randomCard={this.randomCard}
+              listId={list.id}
               />
           )}
         </div>
